@@ -1,0 +1,35 @@
+<div class="property-row"> Properties
+    <div class="property-column" style="background-color:#aaa;">
+        <p>Button CTA</p>
+    </div>
+    <div class="property-column" style="background-color:#bbb;">
+        <input type="text" id="input_BtnCTA" name="input_BtnCTA" value="{{ currentElement?.innerText }}">
+    </div>
+    <br>
+
+    <div class="property-column" style="background-color:#bbb;">
+        <input type="text" id="input_OnClick" name="input_OnClick" value="{{ currentElement?.onclick }}">
+    </div>
+    <br>
+
+    <div class="property-column" style="background-color:#bbb;">
+        <input type="text" id="input_CSS" name="input_CSS" value="{{ currentElement?.style }}">
+    </div>
+
+    <br>
+
+    <button id="btn_Apply" part="button" (click)="applyChanges()">
+        Apply
+    </button>
+
+    <br>
+
+    <button id="btn_export" part="button" (click)="exportComponent()">
+        Export
+    </button>
+</div>
+
+
+<button id="buttonElm2" part="button" style="display:none;">
+
+</button>
