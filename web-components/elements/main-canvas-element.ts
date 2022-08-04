@@ -48,11 +48,7 @@ export class MainCanvasComponent extends LitElement {
 
          <br>
          <div>
-         <button id="btn_export" part="button" @click="${this.exportComponent}">
-        Export
-    </button>
           </div>
-          <properties-element ._element=${this.element}></properties-element>
       `;
   }
 
@@ -86,9 +82,7 @@ export class MainCanvasComponent extends LitElement {
 
   appendNewCustomEl() {
     const templateToAppend = html`
-        <adimo-label>
-           some other things added here
-        </adimo-label>
+     <label id="adimo-label-${ElementStats.labelCount++}"  draggable="true" @click=${this._onClick}>Label</label>
       `;
     this.templates = [...this.templates, templateToAppend];
 
@@ -100,7 +94,7 @@ export class MainCanvasComponent extends LitElement {
 
   appendNewCustomEl2() {
     const templateToAppend = html`
-    <button id="adimo-button-${ElementStats.btnCount++}" draggable="true" @click=${this._onClick}>Button One</button>`;
+    <button id="adimo-button-${ElementStats.btnCount++}" draggable="true" @click=${this._onClick}>Button</button>`;
     this.templates = [...this.templates, templateToAppend];
     var newElement = { elementId: this.count++, displayText: "New Label", alignment: "center", elementType: "adimo-button" }
     this.elementProperties.push(newElement);
@@ -109,25 +103,6 @@ export class MainCanvasComponent extends LitElement {
 
 
 
-  private exportComponent() {
-    debugger;
-    var temp = this.outerHTML;
-    var id = document.getElementById("custom-el-container")?.outerHTML;
-
-    const element = document.getElementsByTagName("main-canvas-component")[0];
-    console.log(element.renderRoot.innerHTML);
-    var data = { htmlCanvas: element.renderRoot.innerHTML };
-    const response = fetch("https://localhost:7004/createTemplate", {
-      method: 'POST',
-      body: JSON.stringify(data),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-
-
-  }
 
 }
 

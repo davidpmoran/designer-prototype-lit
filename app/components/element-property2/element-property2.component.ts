@@ -48,18 +48,20 @@ export class ElementProperty2Component implements AfterViewInit {
   }
 
   exportComponent() {
-    const input = document.getElementById('input_BtnCTA') as HTMLInputElement | null;
-    const onclick = document.getElementById('input_OnClick') as HTMLInputElement | null;
-    const styleInput = document.getElementById('input_CSS') as HTMLInputElement | null;
-    const value = input?.value as string;
-    const onclickValue = onclick?.value as string;
-    const style = styleInput?.value as string;
-    this.currentElement.innerText = value;
+    const element = document.getElementsByTagName("main-canvas-component")[0];
     debugger;
-    var x = onclickValue;
-
-    this.currentElement.onclick = (e: Event) => new Function(x)();
-    this.currentElement.setAttribute('style', style);
+    const canvasString = element.renderRoot.innerHTML.replace('id="custom-el-container" style="height:800px;"', 'id="custom-el-container"');
+    element.renderRoot.children[0].removeAttribute("style");
+    debugger;
+    console.log(element.renderRoot.innerHTML);
+    var data = { htmlCanvas: element.renderRoot.innerHTML };
+    const response = fetch("https://localhost:7004/createTemplate", {
+      method: 'POST',
+      body: JSON.stringify(data),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
   }
 
 
