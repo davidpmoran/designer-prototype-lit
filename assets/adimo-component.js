@@ -14,8 +14,8 @@ export class AdimoComponent extends HTMLElement {
     fetch("./" + this.id + "-adimo-touchpoint.html").then((res) =>
       res.text().then((html) => {
         template.innerHTML = html;
-        this.shadowRoot.appendChild(template.content.cloneNode(true));
         this.shadowRoot.appendChild(script);
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
 
       })
     );

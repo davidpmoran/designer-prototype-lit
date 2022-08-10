@@ -1,0 +1,1 @@
+var temp = document.getElementById("1");temp.shadowRoot.getElementById("adimo-button-1").addEventListener("click", function () {alert('this is a test');});

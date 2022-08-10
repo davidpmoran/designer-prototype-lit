@@ -1,7 +1,3 @@
-import { UpdatingElement, customElement } from 'lit-element';
-
-
-@customElement('adimo-component')
 export class AdimoComponent extends HTMLElement {
   constructor() {
     super();

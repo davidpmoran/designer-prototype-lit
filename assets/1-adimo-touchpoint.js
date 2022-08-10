@@ -1,0 +1,1 @@
+var parent = document.getElementById("1"); parent.shadowRoot.getElementById("adimo-button-1").addEventListener("click", function () { parent.shadowRoot.getElementById("adimo-label-1").innerHTML = "testfsdfdsf"; });
