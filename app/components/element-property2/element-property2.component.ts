@@ -8,15 +8,18 @@ import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 export class ElementProperty2Component implements AfterViewInit {
   public currentElement!: HTMLInputElement;
 
+  private onclickEventDetails!: string;
+
   constructor() {
     let temp: HTMLInputElement = this.currentElement;
-
+    this.onclickEventDetails = "";
 
   }
   ngAfterViewInit() {
     const inputTag = document.getElementById('buttonElm2') as HTMLInputElement;
 
     this.currentElement = inputTag;
+
   }
   ngOnInit() {
     let temp: HTMLInputElement = this.currentElement;
@@ -36,6 +39,7 @@ export class ElementProperty2Component implements AfterViewInit {
     const input = document.getElementById('input_BtnCTA') as HTMLInputElement | null;
     const onclick = document.getElementById('input_OnClick') as HTMLInputElement | null;
     const styleInput = document.getElementById('input_CSS') as HTMLInputElement | null;
+    const ourElement = document.getElementById(this.currentElement.id) as HTMLInputElement | null;
     const value = input?.value as string;
     const onclickValue = onclick?.value as string;
     const style = styleInput?.value as string;
@@ -43,7 +47,11 @@ export class ElementProperty2Component implements AfterViewInit {
     debugger;
     var x = onclickValue;
 
-    this.currentElement.onclick = (e: Event) => new Function(x)();
+    var temp = 'var parent = document.getElementById("1");parent.shadowRoot.getElementById("' + this.currentElement.id + '").addEventListener("click", function () {' + onclickValue + '});'
+
+    this.onclickEventDetails = temp;
+    this.currentElement.setAttribute('onclick', 'function onClick() { onclickValue }');
+    ourElement?.setAttribute('onclick', onclickValue);
     this.currentElement.setAttribute('style', style);
   }
 
@@ -54,7 +62,7 @@ export class ElementProperty2Component implements AfterViewInit {
     element.renderRoot.children[0].removeAttribute("style");
     debugger;
     console.log(element.renderRoot.innerHTML);
-    var data = { htmlCanvas: element.renderRoot.innerHTML };
+    var data = { htmlCanvas: element.renderRoot.innerHTML, JSCanvas: this.onclickEventDetails };
     const response = fetch("https://localhost:7004/createTemplate", {
       method: 'POST',
       body: JSON.stringify(data),
