@@ -7,7 +7,6 @@
 import { Input } from '@angular/core';
 import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { ElementProperty } from 'src/web-components/elements/element-properties';
 
 /**
  * An example element.
@@ -35,9 +34,7 @@ export class PropertiesElement extends LitElement {
 
   override render() {
     return html`<div class="property-row"> Properties
-     <div class="property-column" style="background-color:#aaa;">
-       <p>Button CTA</p>
-     </div>
+  
      <div class="property-column" style="background-color:#bbb;">
      <input type="text" id="input_BtnCTA" name="input_BtnCTA"  >
      </div>
